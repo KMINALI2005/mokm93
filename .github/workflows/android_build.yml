@@ -31,10 +31,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - name: Install Python Dependencies
+      - name: Install Dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          sudo apt-get update -y
+          sudo apt-get install -y build-essential cmake ninja-build  # Install gcc, cmake, ninja
+          python -m pip install --upgrade pip  # Upgrade pip
+          pip install -r requirements.txt 
       - name: Setup Flutter ${{ env.FLUTTER_VERSION }}
         uses: subosito/flutter-action@v2
         with:
@@ -43,7 +45,7 @@ jobs:
         run: |
           flutter doctor
           sudo apt-get update -y
-          sudo apt-get install -y ninja-build libgtk-3-dev
+          sudo apt-get install -y libgtk-3-dev
           flutter doctor
       - name: Setup Java JDK
         uses: actions/setup-java@v4.2.1
