@@ -1,4 +1,2 @@
-flet
-opencv-python
-numpy
-Pillow
+rich
+requests
